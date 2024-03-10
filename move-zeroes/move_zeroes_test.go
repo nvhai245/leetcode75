@@ -14,7 +14,6 @@ func Test_moveZeroes(t *testing.T) {
 		args args
 		want []int
 	}{
-		// TODO: Add test cases.
 		{
 			name: "test 1",
 			args: args{
