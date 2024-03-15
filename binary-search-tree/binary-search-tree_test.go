@@ -15,7 +15,6 @@ func Test_searchBST(t *testing.T) {
 		args args
 		want *TreeNode
 	}{
-		// TODO: Add test cases.
 		{
 			name: "test",
 			args: args{
