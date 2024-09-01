@@ -8,11 +8,35 @@ func findCircleNum(isConnected [][]int) int {
 	}
 	visited := make(map[int]bool, len(isConnected))
 	st := new(datastructures.Stack[int])
-	st.Push(0)
-	for len(st.Stack) > 0 {
-		city := st.Pop()
-		for i, connected := range isConnected[city] {
+	provinces := 0
 
+	for city := range len(isConnected) {
+		if _, isVisited := visited[city]; isVisited {
+			continue
+		}
+		provinces++
+		st.Push(city)
+		dfs(st, isConnected, visited)
+	}
+	return provinces
+}
+
+func dfs(st *datastructures.Stack[int], isConnected [][]int, visited map[int]bool) {
+	if len(st.Stack) == 0 {
+		return
+	}
+	city := st.Pop()
+	visited[city] = true
+	for i, connected := range isConnected[city] {
+		if i == city {
+			continue
+		}
+		if connected == 1 {
+			if _, isVisited := visited[i]; isVisited {
+				continue
+			}
+			st.Push(i)
 		}
 	}
+	dfs(st, isConnected, visited)
 }
